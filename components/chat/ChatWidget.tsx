@@ -25,6 +25,7 @@ export default function ChatWidget() {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [sessionId, setSessionId] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -41,6 +42,20 @@ export default function ChatWidget() {
       inputRef.current.focus();
     }
   }, [isOpen]);
+
+  // Initialize session ID from localStorage or generate a new one
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedSessionId = localStorage.getItem("chat_session_id");
+      if (storedSessionId) {
+        setSessionId(storedSessionId);
+      } else {
+        const newSessionId = crypto.randomUUID();
+        localStorage.setItem("chat_session_id", newSessionId);
+        setSessionId(newSessionId);
+      }
+    }
+  }, []);
 
   const handleSend = async () => {
     if (!input.trim() || isLoading) return;
@@ -66,6 +81,7 @@ export default function ChatWidget() {
         },
         body: JSON.stringify({
           message: userMessage.content,
+          sessionId: sessionId,
           context: {
             page: "home",
           },
