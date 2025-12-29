@@ -28,7 +28,7 @@ export default function PhotosGallery() {
             transition={{ duration: 0.5 }}
             className="text-4xl font-bold mb-12 text-center text-gray-900 dark:text-white"
           >
-            Photos
+            The Human Side
           </motion.h2>
 
           {profile.photos.length === 0 ? (
@@ -112,10 +112,6 @@ export default function PhotosGallery() {
                         priority
                       />
                     </motion.div>
-
-                    <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white text-center">
-                      <p className="text-sm">{profile.photos[selectedImage].alt}</p>
-                    </div>
                   </motion.div>
                 )}
               </AnimatePresence>
