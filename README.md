@@ -1,5 +1,6 @@
 # Executive Career Storefront
 
+
 A premium Next.js website showcasing executive leadership experience, projects, and thought leadership. Built for C-level / Director-level positioning in Quality Engineering and AI-first transformation.
 
 ## Tech Stack
